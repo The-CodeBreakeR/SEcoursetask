@@ -18,6 +18,12 @@ public class Task extends Entity {
     public void setTitle(String value) { title = value; }
 
     public void setStart(Date value) { start = value; }
+    public Date getStart() {
+        return start;
+    }
+    public Date getEnd() {
+        return end;
+    }
     public String getStartDate() {
         return new SimpleDateFormat("YYYY-MM-DD").format(start);
     }
@@ -45,14 +51,11 @@ public class Task extends Entity {
 
     public boolean isOk(Entity item){
         Task it = (Task)item;
-        try{
-        Date is = new SimpleDateFormat("HH:mm:ss").parse(it.getStartTime());
-        Date ie =new SimpleDateFormat("HH:mm:ss").parse(it.getEndTime());
+        Date is = it.getStart();
+        Date ie =it.getEnd();
         if(start.before(ie) ^ end.before(is))
-            return true;
-        } catch (ParseException ex) {
-        }
-        return false;
+            return false;
+        return true;
     }
 
 
