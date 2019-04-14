@@ -23,6 +23,12 @@ public class EntityStorage<T extends Entity> {
         return id;
     }
 
+    public void remove (int id)
+    {
+        if (list.containsKey(id))
+            list.remove(id);
+    }
+
     public ArrayList<T> getAll() {
         return new ArrayList<T>(list.values());
     }
